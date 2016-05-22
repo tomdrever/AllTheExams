@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Exam Timetable</string>
+    <string name="action_search">Search Exams</string>
+    <string name="action_tune">Tune Exams</string>
+    <string name="search_hint">Search Exams</string>
+</resources>

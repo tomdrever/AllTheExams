@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="isExamDone" type="Boolean"/>
+        <import type="android.view.View"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+        <!--CONTENT-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="vertical">
+            <!--TOP - exam name, and time left-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--Name-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="casual"
+                    android:id="@+id/exam_item_name" />
+                <!--Time left-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:fontFamily="casual"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/exam_item_time_until" />
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
+                        android:src="@{isExamDone ? @drawable/ic_check_circle_black_24dp : @drawable/ic_watch_later_black_24dp}"
+                        android:tint="@color/colorGreyTint"
+                        android:layout_gravity="end|center_vertical"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!--MIDDLE - exam details-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!--Details-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:fontFamily="casual"
+                    android:id="@+id/exam_item_details" />
+            </LinearLayout>
+            <!--BOTTOM - date, time and duration-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <!--Date-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:fontFamily="casual"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/exam_item_date" />
+                <!--Duration-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:textSize="12sp"
+                    android:fontFamily="casual"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/exam_item_duration" />
+                <!--Time-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:fontFamily="casual"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/exam_item_time" />
+            </LinearLayout>
+        </LinearLayout>
+        <!--Done or not-->
+
+    </LinearLayout>
+</layout>
+

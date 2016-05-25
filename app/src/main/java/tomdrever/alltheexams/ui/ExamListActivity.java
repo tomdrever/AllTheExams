@@ -94,7 +94,6 @@ public class ExamListActivity extends AppCompatActivity {
                         // De-select search bar
                         mSearchView.setIconified(true);
                         mMenuItem.collapseActionView();
-                        //mSearchView.onActionViewCollapsed();
 
                         mSwipeRefreshLayout.setRefreshing(false);
                     }

@@ -35,6 +35,8 @@ public class ExamListActivity extends AppCompatActivity {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ExamListAdapter mExamListAdapter;
 
+    private SearchView mSearchView;
+    private MenuItem mMenuItem;
     private TextView mSearchDescription;
 
     private int tuning = 2;
@@ -89,9 +91,16 @@ public class ExamListActivity extends AppCompatActivity {
                         // Reset tuning to default
                         tuning = 2;
 
+                        // De-select search bar
+                        mSearchView.setIconified(true);
+                        mMenuItem.collapseActionView();
+                        //mSearchView.onActionViewCollapsed();
+
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
-                }, 3000);
+                },
+                        // Delay, to give the appearance that some actual refreshing is happening
+                        3000);
             }
         });
 
@@ -114,10 +123,11 @@ public class ExamListActivity extends AppCompatActivity {
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        mMenuItem = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        if (mSearchView != null) {
+            mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     return true;
@@ -126,7 +136,9 @@ public class ExamListActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     mExamListAdapter.getFilter().filter(query);
-                    mSearchDescription.setText("Showing results for: " + query);
+                    mSearchDescription.setText(String.format(
+                            getResources().getString(R.string.search_description_text),
+                            query));
                     expand(mSearchDescription);
                     return true;
                 }

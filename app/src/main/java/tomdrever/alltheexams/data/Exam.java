@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Exam {
+    // Name of the exam, e.g "French"
     public String getName() {
         return name;
     }
@@ -27,6 +28,7 @@ public class Exam {
     }
     protected String name;
 
+    // Exam details, e.g. "Unit 2"
     public String getDetails() {
         return details;
     }
@@ -35,6 +37,7 @@ public class Exam {
     }
     protected String details;
 
+    // Exam datetime fields
     public Boolean getIsExamDone() {
         int daysLeft = Days.daysBetween(DateTime.now().toLocalDate(), dateTime.toLocalDate()).getDays();
 
@@ -108,6 +111,7 @@ public class Exam {
     }
     protected DateTime dateTime;
 
+    // Duration of the exam
     public Period getDuration() {
         return duration;
     }
@@ -119,6 +123,8 @@ public class Exam {
     }
     protected Period duration;
 
+    // Plain-old-java-class used to store details of an exam in JSON easier (as
+    // joda-time objects have a lot of unnecessary stuff)
     public static class JSONExam {
         private int year;
 
@@ -195,6 +201,7 @@ public class Exam {
         private String details;
     }
 
+    // Deserialize exam/s from JSON code
     public static Exam getExamFromJson(@NonNull String json) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JSONExam jsonExam = mapper.readValue(json, JSONExam.class);
@@ -214,6 +221,7 @@ public class Exam {
         return exams;
     }
 
+    // Serialize exams/s into JSON code
     public static String getJsonFromExam(@NonNull Exam exam) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JSONExam jsonExam = Exam.toJsonExam(exam);
@@ -232,6 +240,7 @@ public class Exam {
         return mapper.writeValueAsString(jsonExams);
     }
 
+    // Convert exams to and from jsonexams for storage in JSON
     private static JSONExam toJsonExam(Exam exam) {
         JSONExam jsonExam = new JSONExam();
         jsonExam.year = exam.dateTime.getYear();

@@ -41,9 +41,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-                <!--TODO: create and show (preferably nicely) a list of objects-->
-                <!--TODO: change this list of objects based on tuning and search queries-->
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

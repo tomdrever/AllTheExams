@@ -22,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class ExamListActivity extends AppCompatActivity {
 
     private TextView mSearchDescription;
 
-    public int tuning = 2;
+    private int tuning = 2;
 
     public ArrayList<Exam> examList = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public class ExamListActivity extends AppCompatActivity {
 
         RecyclerView examRecyclerView = (RecyclerView) findViewById(R.id.exam_list);
 
-        // Get contents of json file as string, load to exam list
+        // Todo - get JSON from file, selected by user
         String json = "[\n" + " {\n" + " \"dayOfMonth\":17,\n" + " \"details\":\"Listening\",\n" + " \"durationInMinutes\":35,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"French\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":17,\n" + " \"details\":\"Reading\",\n" + " \"durationInMinutes\":50,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"French\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":17,\n" + " \"details\":\"Unit 1\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Biology\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":18,\n" + " \"details\":\"Religion and Life Issues\",\n" + " \"durationInMinutes\":90,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Religious Studies\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":19,\n" + " \"details\":\"Unit 1\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Chemistry\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":23,\n" + " \"details\":\"English Literature Unit 1 \",\n" + " \"durationInMinutes\":90,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"English\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":23,\n" + " \"details\":\"Religion and Morality\",\n" + " \"durationInMinutes\":90,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Religious Studies\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":25,\n" + " \"details\":\"Unit 1\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Physics\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":26,\n" + " \"details\":\"Non-Calculator\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"Mathematics\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":27,\n" + " \"details\":\"English Literature Unit 2 \",\n" + " \"durationInMinutes\":75,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":5,\n" + " \"name\":\"English\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":6,\n" + " \"details\":\"Unit 1 - Perception and Dreaming\",\n" + " \"durationInMinutes\":75,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Psychology\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":7,\n" + " \"details\":\"English Language\",\n" + " \"durationInMinutes\":205,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"English\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":9,\n" + " \"details\":\"Calculator\",\n" + " \"durationInMinutes\":105,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Mathematics\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":9,\n" + " \"details\":\"Unit 2 - Social and Biological\",\n" + " \"durationInMinutes\":105,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Psychology\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":10,\n" + " \"details\":\"Unit 2\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Biology\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":10,\n" + " \"details\":\"Unit 3\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":10,\n" + " \"minuteOfHour\":5,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Biology\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":15,\n" + " \"details\":\"Unit 2\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":13,\n" + " \"minuteOfHour\":40,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Chemistry\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":15,\n" + " \"details\":\"Unit 3\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":14,\n" + " \"minuteOfHour\":45,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Chemistry\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":17,\n" + " \"details\":\"Unit 2\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":9,\n" + " \"minuteOfHour\":0,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Physics\",\n" + " \"year\":2016\n" + " },\n" + " {\n" + " \"dayOfMonth\":17,\n" + " \"details\":\"Unit 3\",\n" + " \"durationInMinutes\":60,\n" + " \"hourOfDay\":10,\n" + " \"minuteOfHour\":5,\n" + " \"monthOfYear\":6,\n" + " \"name\":\"Physics\",\n" + " \"year\":2016\n" + " }\n" + "]";
 
         try {
@@ -70,24 +71,31 @@ public class ExamListActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Snackbar.make(findViewById(R.id.exam_list), "Reloading timetable", Snackbar.LENGTH_SHORT).show();
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        // Delete then immediately add the timetable again - this
+                        // will trigger the re-creation of each view, with updated
+                        // details
+
+                        // Todo - reload timetable from specified JSON file here
                         mExamListAdapter.clear();
                         mExamListAdapter.setAllExams(examList);
 
+                        // Reset the search description
                         mSearchDescription.setText("");
                         collapse(mSearchDescription);
 
+                        // Reset tuning to default
+                        tuning = 2;
+
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
-                }, 1000);
+                }, 3000);
             }
         });
 
-        // Configure the refreshing colors
+        // Set the refreshing colors
         mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_dark,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -96,7 +104,7 @@ public class ExamListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        collapse(mSearchDescription);
+        mSearchDescription.setVisibility(View.GONE);
     }
 
     @Override
@@ -253,7 +261,7 @@ public class ExamListActivity extends AppCompatActivity {
             }
         };
 
-        // 1dp/ms
+        // 6dp/ms
         a.setDuration((int) (initialHeight / v.getContext().getResources().getDisplayMetrics().density) * 6);
         v.startAnimation(a);
     }

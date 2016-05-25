@@ -106,7 +106,7 @@ public class ExamListAdapter extends RecyclerView.Adapter<ExamListAdapter.ExamVi
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
             if (constraint == null || constraint.length() == 0) {
-                // no filter - return all
+                // No filter - return all exams
                 results.values = allExams;
                 results.count = allExams.size();
             }

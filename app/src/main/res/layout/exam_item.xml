@@ -101,8 +101,6 @@
                     android:id="@+id/exam_item_time" />
             </LinearLayout>
         </LinearLayout>
-        <!--Done or not-->
-
     </LinearLayout>
 </layout>
 
